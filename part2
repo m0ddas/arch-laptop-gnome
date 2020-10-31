@@ -22,7 +22,7 @@ systemctl enable NetworkManager
 useradd -m -g users -G wheel,storage,power -s /bin/bash modda
 passwd modda
 EDITOR=nano visudo
-mv moddas /home/modda/
+mv /moddas /home/modda/
 chmod modda +x /home/modda/moddas
 su modda
 echo "-----------------"
