@@ -3,8 +3,8 @@
 
 ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
-echo sv_SE.UTF-8 >> /etc/locale.gen
-echo en_US.UTF-8 >> /etc/locale.gen
+echo sv_SE.UTF-8 UTF-8 >> /etc/locale.gen
+echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
 locale-gen
 echo LANG=sv_SE.UTF-8 >> /etc/locale.conf
 export LANG=sv_SE.UTF-8
