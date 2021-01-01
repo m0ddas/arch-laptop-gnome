@@ -1,16 +1,20 @@
 #!/bin/bash
 
 
-cp /etc/locale.gen /etc/locale.gen.bak
+ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+hwclock --systohc
 echo sv_SE.UTF-8 >> /etc/locale.gen
+echo en_US.UTF-8 >> /etc/locale.gen
+locale-gen
+echo sv_SE.UTF-8 >> /etc/locale.conf
+export LANG=sv_SE.UTF-8
+echo KEYMAP=de-latin1 >> /etc/vconsole.conf
 pacman -Syy
 pacman-key --populate archlinux
-timedatectl set-timezone Europe/Stockholm
-locale-gen
-echo LANG=sv_SE.UTF-8 > /etc/locale.conf
-export LANG=sv_SE.UTF-8
-echo arch-workstation > /etc/hostname
-mv hosts /etc/
+echo arch-workstation >> /etc/hostname
+echo 127.0.0.1	localhost >> hosts
+echo ::1		    localhost >> hosts
+echo 127.0.1.1  arch-workstation >> hosts
 passwd
 pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo xed xreader steam libreoffice-fresh firefox gparted gnome-disk-utility nvidia nvidia-settings nvidia-utils transmission-gtk
 mkdir /boot/efi
@@ -19,10 +23,10 @@ grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable gdm.service
 systemctl enable NetworkManager
-useradd -m -g users -G wheel,storage,power -s /bin/bash modda
+useradd -m modda
 passwd modda
 EDITOR=nano visudo
-mv /moddas /home/modda/
+mv /moddas /home/modda/moddas
 chmod modda +x /home/modda/moddas
 su modda
 echo "-----------------"
