@@ -25,7 +25,7 @@ systemctl enable gdm.service
 systemctl enable NetworkManager
 useradd -m modda
 passwd modda
-EDITOR=nano visudo
+echo modda ALL=(ALL) ALL
 mv /moddas /home/modda/moddas
 chmod modda +x /home/modda/moddas
 su modda
