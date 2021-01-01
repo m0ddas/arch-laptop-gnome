@@ -12,9 +12,9 @@ echo KEYMAP=sv-latin1 >> /etc/vconsole.conf
 pacman -Syy
 pacman-key --populate archlinux
 echo arch-workstation >> /etc/hostname
-echo 127.0.0.1	localhost >> hosts
-echo ::1		    localhost >> hosts
-echo 127.0.1.1  arch-workstation >> hosts
+echo 127.0.0.1	localhost >> /etc/hosts
+echo ::1		    localhost >> /etc/hosts
+echo 127.0.1.1  arch-workstation >> /etc/hosts
 passwd
 pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo gnome-terminal xed xreader fuse steam libreoffice-fresh-sv firefox gparted gnome-disk-utility nvidia nvidia-settings nvidia-utils nvidia-prime transmission-gtk
 mkdir /boot/efi
