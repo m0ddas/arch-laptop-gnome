@@ -16,7 +16,7 @@ echo 127.0.0.1	localhost >> hosts
 echo ::1		    localhost >> hosts
 echo 127.0.1.1  arch-workstation >> hosts
 passwd
-pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo xed xreader fuse steam libreoffice-fresh-sv firefox gparted gnome-disk-utility nvidia nvidia-settings nvidia-utils transmission-gtk
+pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo xed xreader fuse steam libreoffice-fresh-sv firefox gparted gnome-disk-utility nvidia nvidia-settings nvidia-utils nvidia-prime transmission-gtk
 mkdir /boot/efi
 mount /dev/nvme0n1p1 /boot/efi
 grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
