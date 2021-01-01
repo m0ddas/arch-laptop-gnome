@@ -8,7 +8,7 @@ echo en_US.UTF-8 >> /etc/locale.gen
 locale-gen
 echo sv_SE.UTF-8 >> /etc/locale.conf
 export LANG=sv_SE.UTF-8
-echo KEYMAP=de-latin1 >> /etc/vconsole.conf
+echo KEYMAP=sv-latin1 >> /etc/vconsole.conf
 pacman -Syy
 pacman-key --populate archlinux
 echo arch-workstation >> /etc/hostname
