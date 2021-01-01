@@ -14,6 +14,5 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp mirrorlist /mnt/etc/pacman.d/mirrorlist
 cp /etc/pacman.conf /mnt/etc/pacman.conf
 mv part2 /mnt
-mv hosts /mnt
 mv moddas /mnt
 arch-chroot /mnt
