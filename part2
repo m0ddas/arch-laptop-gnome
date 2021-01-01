@@ -1,26 +1,36 @@
 #!/bin/bash
 
-
+# Setting up timezone
 ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
+
+# Setting up locale
 echo sv_SE.UTF-8 UTF-8 >> /etc/locale.gen
 echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
 locale-gen
 echo LANG=sv_SE.UTF-8 >> /etc/locale.conf
 export LANG=sv_SE.UTF-8
 echo KEYMAP=sv-latin1 >> /etc/vconsole.conf
-pacman -Syy
-pacman-key --populate archlinux
+
+# Setting up /etc/hostname
 echo arch-workstation >> /etc/hostname
 echo 127.0.0.1	localhost >> /etc/hosts
 echo ::1		    localhost >> /etc/hosts
 echo 127.0.1.1  arch-workstation >> /etc/hosts
+
+# Starting installation 
+pacman -Syy
+pacman-key --populate archlinux
 passwd
 pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo gnome-terminal xed xreader fuse steam libreoffice-fresh-sv firefox gparted gnome-disk-utility nvidia nvidia-settings nvidia-utils nvidia-prime transmission-gtk
+
+# Preparing boot partition and installing grub
 mkdir /boot/efi
 mount /dev/nvme0n1p1 /boot/efi
 grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# Enabling Services and adding accounts
 systemctl enable gdm.service
 systemctl enable NetworkManager
 useradd -m modda
