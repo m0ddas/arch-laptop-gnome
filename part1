@@ -1,18 +1,40 @@
 #!/bin/bash
 
+# Formatting drives and setting up swap
 mkfs.fat -F32 /dev/nvme0n1p1
 mkswap /dev/nvme0n1p2
 swapon /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
+
+# Mounting root partition
 mount /dev/nvme0n1p3 /mnt
+
+# Setting up pacman.conf
 echo [multilib] >> /etc/pacman.conf
 echo Include = /etc/pacman.d/mirrorlist >> /etc/pacman.conf
+
+# Replacing /etc/pacman.d/mirrorlist with preconfigured list
 cp mirrorlist /etc/pacman.d/mirrorlist
+
+# Updating mirrors and downloading base for install
 pacman -Syy
 pacstrap /mnt base linux linux-firmware nano base-devel
+
+# Generating /etc/fstab on new system
 genfstab -U /mnt >> /mnt/etc/fstab
+
+# Copying pacman configuration to new system
 cp mirrorlist /mnt/etc/pacman.d/mirrorlist
 cp /etc/pacman.conf /mnt/etc/pacman.conf
+
+# Moving configuration files to new system
 mv part2 /mnt
 mv moddas /mnt
+
+# Instructions to continue
+echo --------------------------------------
+echo To continue configuration type ./part2
+echo --------------------------------------
+
+# Chroot into new system
 arch-chroot /mnt
