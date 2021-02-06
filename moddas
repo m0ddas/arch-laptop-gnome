@@ -2,7 +2,6 @@
 #!/bin/bash
 
 # Setting up home directory folders
-xdg-user-dirs-update
 
 # Installing git and yay
 sudo pacman -S git
@@ -13,6 +12,16 @@ cd yay-git
 makepkg -si
 
 # Updating yay and downloading Spotify
-yay -Syu
+yay -Syy
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
-exit
+yay -S spotify steam-fonts
+echo ----------------------------
+echo
+echo "Lägg till MODULES="nvidia""
+echo
+echo ----------------------------
+read -p "Tryck på valfri tangent för att fortsätta"
+sudo nano /etc/mkinitcpio.conf
+sudo mkinitcpio -P
+chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish
