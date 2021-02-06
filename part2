@@ -22,7 +22,7 @@ echo 127.0.1.1  arch-workstation >> /etc/hosts
 pacman -Syy
 pacman-key --populate archlinux
 passwd
-pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager thunderbird xdg-user-dirs sudo gnome-terminal fuse libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent lutris wine wine-gecko wine-mono winetricks 
+pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager thunderbird xdg-user-dirs sudo gnome-terminal fuse libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent lutris wine wine-gecko wine-mono winetricks vlc neofetch nvidia nvidia-utils nvidia-settings nvidia-prime steam os-prober opencl-nvidia fish
 
 # Preparing boot partition and installing grub
 mkdir /boot/efi
